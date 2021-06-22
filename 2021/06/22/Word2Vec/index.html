@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="说来可笑，明明前一天说要重新开始，决定每天最后一个小时认认真真写日记，结果直到躺在床上才想起来这回事。开始写已经是第二天下午了。 依稀记得早上惯例10点起来后就一直玩手机玩到中午，下午又是玩手机，偏偏还没什么好玩的，就看看已经看过好多遍的桌游节目。之后，原本是用来写论文的时间，不知道为什么去研究起了C++11的新特性，大致明白了右值引用和移动语义是什么意思。又改了改之前网上抄来的csv解析器，研究">
+  <meta name="description" content="Word2Vec 一个经典的自然语言处理模型Word2Vec的目标是根据语料库把词转换成一个描述词的向量。一个经典的例子是Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)。 本文参考：  https:&#x2F;&#x2F;medium.com&#x2F;@vishwasbhanawat&#x2F;the-architecture-of-word2vec-78659ce">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无聊的周末">
-<meta property="og:url" content="http://example.com/2021/06/21/%E6%97%A0%E8%81%8A%E7%9A%84%E5%91%A8%E6%9C%AB/index.html">
+<meta property="og:title" content="Word2Vec">
+<meta property="og:url" content="http://example.com/2021/06/22/Word2Vec/index.html">
 <meta property="og:site_name" content="Yuanfeng Dai&#39;s Blog">
-<meta property="og:description" content="说来可笑，明明前一天说要重新开始，决定每天最后一个小时认认真真写日记，结果直到躺在床上才想起来这回事。开始写已经是第二天下午了。 依稀记得早上惯例10点起来后就一直玩手机玩到中午，下午又是玩手机，偏偏还没什么好玩的，就看看已经看过好多遍的桌游节目。之后，原本是用来写论文的时间，不知道为什么去研究起了C++11的新特性，大致明白了右值引用和移动语义是什么意思。又改了改之前网上抄来的csv解析器，研究">
+<meta property="og:description" content="Word2Vec 一个经典的自然语言处理模型Word2Vec的目标是根据语料库把词转换成一个描述词的向量。一个经典的例子是Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)。 本文参考：  https:&#x2F;&#x2F;medium.com&#x2F;@vishwasbhanawat&#x2F;the-architecture-of-word2vec-78659ce">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-21T07:34:31.000Z">
-<meta property="article:modified_time" content="2021-06-21T07:58:57.389Z">
+<meta property="article:published_time" content="2021-06-22T13:03:52.000Z">
+<meta property="article:modified_time" content="2021-06-22T13:30:18.290Z">
 <meta property="article:author" content="Yuanfeng Dai">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/06/21/%E6%97%A0%E8%81%8A%E7%9A%84%E5%91%A8%E6%9C%AB/">
+<link rel="canonical" href="http://example.com/2021/06/22/Word2Vec/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>无聊的周末 | Yuanfeng Dai's Blog</title>
+  <title>Word2Vec | Yuanfeng Dai's Blog</title>
   
 
 
@@ -155,7 +155,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/21/%E6%97%A0%E8%81%8A%E7%9A%84%E5%91%A8%E6%9C%AB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/22/Word2Vec/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +168,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          无聊的周末
+          Word2Vec
         </h1>
 
         <div class="post-meta">
@@ -179,7 +179,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-21 15:34:31 / Modified: 15:58:57" itemprop="dateCreated datePublished" datetime="2021-06-21T15:34:31+08:00">2021-06-21</time>
+              <time title="Created: 2021-06-22 21:03:52 / Modified: 21:30:18" itemprop="dateCreated datePublished" datetime="2021-06-22T21:03:52+08:00">2021-06-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -187,7 +187,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
                 </span>
             </span>
 
@@ -202,9 +206,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>说来可笑，明明前一天说要重新开始，决定每天最后一个小时认认真真写日记，结果直到躺在床上才想起来这回事。开始写已经是第二天下午了。</p>
-<p>依稀记得早上惯例10点起来后就一直玩手机玩到中午，下午又是玩手机，偏偏还没什么好玩的，就看看已经看过好多遍的桌游节目。之后，原本是用来写论文的时间，不知道为什么去研究起了C++11的新特性，大致明白了右值引用和移动语义是什么意思。又改了改之前网上抄来的csv解析器，研究了一下迭代器的写法，然后下午就差不多没了。</p>
-<p>晚上拿到了两个女生朋友的礼物，临时决定把已经绝版的森林之王桌游送给最好的朋友。之后搞了一下公司里的均价生成代码，然后陆老师突然来找，等聊完就差不多睡了。</p>
+        <h2 id="Word2Vec-一个经典的自然语言处理模型"><a href="#Word2Vec-一个经典的自然语言处理模型" class="headerlink" title="Word2Vec 一个经典的自然语言处理模型"></a>Word2Vec 一个经典的自然语言处理模型</h2><p>Word2Vec的目标是<strong>根据语料库把词转换成一个描述词的向量</strong>。一个经典的例子是<code>Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)</code>。</p>
+<p>本文参考：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638">https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638</a><br><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-word2vec/">https://jalammar.github.io/illustrated-word2vec/</a><br><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/word2vec/">https://code.google.com/archive/p/word2vec/</a></p>
+</blockquote>
+<h3 id="训练数据如何生成"><a href="#训练数据如何生成" class="headerlink" title="训练数据如何生成"></a>训练数据如何生成</h3><p>训练数据的生成与<strong>语言模型</strong>有关。有两种生成训练数据的方法：</p>
+<p>第一种方式的input word与target word是包含与被包含的关系，比如对于句子<code>by a red bus in</code>，其中<code>red</code>是target，其它四个词是input。这种方式叫做<strong>Continuous Bag of Words</strong></p>
+<p>第二种方式正相反，同样一个例子中，其它四个词是input，而<code>red</code>是output。这种方式叫做<strong>Skipgram</strong></p>
+<p>实际上训练数据需要一步转换来更方便计算机训练，以上述的第二种方式为例，转换前的数据和转换后的数据如下图所示：</p>
+
 
     </div>
 
@@ -220,13 +231,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/19/startup/" rel="prev" title="startup">
-      <i class="fa fa-chevron-left"></i> startup
+    <a href="/2021/06/22/%E6%AF%95%E4%B8%9A%E5%85%B8%E7%A4%BC/" rel="prev" title="毕业典礼">
+      <i class="fa fa-chevron-left"></i> 毕业典礼
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/22/%E6%AF%95%E4%B8%9A%E5%85%B8%E7%A4%BC/" rel="next" title="毕业典礼">
-      毕业典礼 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -285,6 +293,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec 一个经典的自然语言处理模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">训练数据如何生成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

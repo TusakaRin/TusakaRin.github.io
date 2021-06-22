@@ -150,6 +150,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/22/Word2Vec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yuanfeng Dai">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuanfeng Dai's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/22/Word2Vec/" class="post-title-link" itemprop="url">Word2Vec</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-06-22 21:03:52 / Modified: 21:30:18" itemprop="dateCreated datePublished" datetime="2021-06-22T21:03:52+08:00">2021-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Word2Vec-一个经典的自然语言处理模型"><a href="#Word2Vec-一个经典的自然语言处理模型" class="headerlink" title="Word2Vec 一个经典的自然语言处理模型"></a>Word2Vec 一个经典的自然语言处理模型</h2><p>Word2Vec的目标是<strong>根据语料库把词转换成一个描述词的向量</strong>。一个经典的例子是<code>Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)</code>。</p>
+<p>本文参考：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638">https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638</a><br><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-word2vec/">https://jalammar.github.io/illustrated-word2vec/</a><br><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/word2vec/">https://code.google.com/archive/p/word2vec/</a></p>
+</blockquote>
+<h3 id="训练数据如何生成"><a href="#训练数据如何生成" class="headerlink" title="训练数据如何生成"></a>训练数据如何生成</h3><p>训练数据的生成与<strong>语言模型</strong>有关。有两种生成训练数据的方法：</p>
+<p>第一种方式的input word与target word是包含与被包含的关系，比如对于句子<code>by a red bus in</code>，其中<code>red</code>是target，其它四个词是input。这种方式叫做<strong>Continuous Bag of Words</strong></p>
+<p>第二种方式正相反，同样一个例子中，其它四个词是input，而<code>red</code>是output。这种方式叫做<strong>Skipgram</strong></p>
+<p>实际上训练数据需要一步转换来更方便计算机训练，以上述的第二种方式为例，转换前的数据和转换后的数据如下图所示：</p>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/22/%E6%AF%95%E4%B8%9A%E5%85%B8%E7%A4%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -496,14 +577,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
   </nav>
