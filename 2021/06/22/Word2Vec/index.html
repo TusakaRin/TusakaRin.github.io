@@ -27,10 +27,13 @@
 <meta property="og:site_name" content="Yuanfeng Dai&#39;s Blog">
 <meta property="og:description" content="Word2Vec 一个经典的自然语言处理模型Word2Vec的目标是根据语料库把词转换成一个描述词的向量。一个经典的例子是Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)。 本文参考：  https:&#x2F;&#x2F;medium.com&#x2F;@vishwasbhanawat&#x2F;the-architecture-of-word2vec-78659ce">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/06/22/Word2Vec/word2vec-training-dataset.png">
+<meta property="og:image" content="http://example.com/2021/06/22/Word2Vec/network.png">
 <meta property="article:published_time" content="2021-06-22T13:03:52.000Z">
-<meta property="article:modified_time" content="2021-06-22T13:30:18.290Z">
+<meta property="article:modified_time" content="2021-06-22T14:00:51.113Z">
 <meta property="article:author" content="Yuanfeng Dai">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/06/22/Word2Vec/word2vec-training-dataset.png">
 
 <link rel="canonical" href="http://example.com/2021/06/22/Word2Vec/">
 
@@ -179,7 +182,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-22 21:03:52 / Modified: 21:30:18" itemprop="dateCreated datePublished" datetime="2021-06-22T21:03:52+08:00">2021-06-22</time>
+              <time title="Created: 2021-06-22 21:03:52 / Modified: 22:00:51" itemprop="dateCreated datePublished" datetime="2021-06-22T21:03:52+08:00">2021-06-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,13 +212,21 @@
         <h2 id="Word2Vec-一个经典的自然语言处理模型"><a href="#Word2Vec-一个经典的自然语言处理模型" class="headerlink" title="Word2Vec 一个经典的自然语言处理模型"></a>Word2Vec 一个经典的自然语言处理模型</h2><p>Word2Vec的目标是<strong>根据语料库把词转换成一个描述词的向量</strong>。一个经典的例子是<code>Vector(king) - Vector(man) + Vector(woman) ~ Vector(queue)</code>。</p>
 <p>本文参考：</p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638">https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638</a><br><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-word2vec/">https://jalammar.github.io/illustrated-word2vec/</a><br><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/word2vec/">https://code.google.com/archive/p/word2vec/</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638">https://medium.com/@vishwasbhanawat/the-architecture-of-word2vec-78659ceb6638</a><br><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-word2vec/">https://jalammar.github.io/illustrated-word2vec/</a><br><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/word2vec/">https://code.google.com/archive/p/word2vec/</a><br><a target="_blank" rel="noopener" href="https://towardsdatascience.com/an-implementation-guide-to-word2vec-using-numpy-and-google-sheets-13445eebd281">https://towardsdatascience.com/an-implementation-guide-to-word2vec-using-numpy-and-google-sheets-13445eebd281</a></p>
 </blockquote>
-<h3 id="训练数据如何生成"><a href="#训练数据如何生成" class="headerlink" title="训练数据如何生成"></a>训练数据如何生成</h3><p>训练数据的生成与<strong>语言模型</strong>有关。有两种生成训练数据的方法：</p>
+<span id="more"></span>
+
+<h3 id="训练数据如何生成"><a href="#训练数据如何生成" class="headerlink" title="训练数据如何生成"></a>训练数据如何生成</h3><h4 id="CBOW-and-Skip-gram"><a href="#CBOW-and-Skip-gram" class="headerlink" title="CBOW and Skip-gram"></a>CBOW and Skip-gram</h4><p>训练数据的生成与<strong>语言模型</strong>有关。有两种生成训练数据的方法：</p>
 <p>第一种方式的input word与target word是包含与被包含的关系，比如对于句子<code>by a red bus in</code>，其中<code>red</code>是target，其它四个词是input。这种方式叫做<strong>Continuous Bag of Words</strong></p>
 <p>第二种方式正相反，同样一个例子中，其它四个词是input，而<code>red</code>是output。这种方式叫做<strong>Skipgram</strong></p>
 <p>实际上训练数据需要一步转换来更方便计算机训练，以上述的第二种方式为例，转换前的数据和转换后的数据如下图所示：</p>
+<img src="/2021/06/22/Word2Vec/word2vec-training-dataset.png" class="">
 
+<h4 id="Negtive-Sampling"><a href="#Negtive-Sampling" class="headerlink" title="Negtive Sampling"></a>Negtive Sampling</h4><p>往训练数据中增加随机的标签为0的数据，以防止模型过拟合。</p>
+<h3 id="谷歌Word2Vec模型"><a href="#谷歌Word2Vec模型" class="headerlink" title="谷歌Word2Vec模型"></a>谷歌Word2Vec模型</h3><p>下图展示了一个简版的网络，其中共有9个词，生成的vector共有10个元素</p>
+<img src="/2021/06/22/Word2Vec/network.png" class="">
+
+<h3 id="模型原理"><a href="#模型原理" class="headerlink" title="模型原理"></a>模型原理</h3><p>以神经网络的角度来看，模型的最终预测结果是一个词附近各个词出现的概率。而前一层则总结了这个词的特征。如果两个词比较像，那么前后的词也应该比较像，故描述这两个词的特征向量应该比较像，这就是embeding的原理。</p>
 
     </div>
 
@@ -293,7 +304,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec 一个经典的自然语言处理模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">训练数据如何生成</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-%E4%B8%80%E4%B8%AA%E7%BB%8F%E5%85%B8%E7%9A%84%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec 一个经典的自然语言处理模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">训练数据如何生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CBOW-and-Skip-gram"><span class="nav-number">1.1.1.</span> <span class="nav-text">CBOW and Skip-gram</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Negtive-Sampling"><span class="nav-number">1.1.2.</span> <span class="nav-text">Negtive Sampling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8CWord2Vec%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">谷歌Word2Vec模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">模型原理</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
