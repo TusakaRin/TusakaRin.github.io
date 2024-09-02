@@ -2,5 +2,10 @@
     "search.exclude": {
         "**/node_modules": false
     },
-    "search.useIgnoreFiles": false
+    "search.useIgnoreFiles": false,
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "latex",
+        "plaintext"
+    ]
 }
