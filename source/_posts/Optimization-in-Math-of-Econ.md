@@ -34,8 +34,9 @@ If a function $f$ has an interior local maximizer or minimizer $x$ and if $f$ is
 
 ### Multivariate
 
+{% asset_img sce.png This is an example image %}
+
 - For multivariate function, consider example $z=3xy-x^2-y^2$, (0,0) is the only stationary point, satisfing F.O.C and has $f''_{xx}\leq 0$ and $f''_{yy}\leq 0$, but (0,0) is not local optimizer. 
-{% asset_img 2ndconditionexample.png This is an example image %}
 - Therefore, only if the hessian matrix is **negative definite** or **positive definite**, then it's local **maximizer** or local **minimizer**. And also, if it's minimizer or maximizer, then the hessian is **positive semedefinite** and **negative semidefinite**.
 - The point (0,0) is a **saddle point**, it's stationary but not local optimizer.
 

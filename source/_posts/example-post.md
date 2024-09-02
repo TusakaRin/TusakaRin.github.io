@@ -15,5 +15,7 @@ categories:
 git clone https://github.com/TusakaRin/TusakaRin.github.io.git
 npm install -g hexo-cli
 cd TusakaRin.github.io.git
+git checkout dev
+nvm use 18
 npm install
 ```
